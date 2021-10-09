@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "647e3caf-3e6e-4672-80fb-a28559051abe",
+		"name": "oauth2.0 node app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Oauth login view",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5500/login/google",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5500",
+					"path": [
+						"login",
+						"google"
+					]
+				},
+				"description": "API fetches Authorization code and leads to login prompt and fetches the access token."
+			},
+			"response": [
+				{
+					"name": "google Oauth login view",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5500/login/google",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5500",
+							"path": [
+								"login",
+								"google"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "911"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38f-Pzy5/8wQfI3r/ou7tJQEdwmdN88\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Oct 2021 04:16:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html>\n    <head>\n        <title>google login</title>\n    </head>\n    <body></body>\n    <div style=\"text-align:center;\">\n        <h1>Welcome To google</h1>\n        <br>\n        <button style=\"background: #09094459;border: none;width: 10%;padding: 1%;border-radius: 4px;box-shadow: 0px 1px 3px 0px #00000099;color: black;\" onmouseover=\"this.style.box-shadow= 'none'\">\n            <a href=\"https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&amp;client_id=609594948953-1drplrdr9b0tgkdsfot9c6hpn8u5mdae.apps.googleusercontent.com&amp;include_granted_scopes=true&amp;redirect_uri=http%3A%2F%2Flocalhost%3A5500%2Fapi%2Fauthenticate%2Fgoogle%2Fcallbackurl&amp;response_type=code&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly&amp;state=state_parameter_passthrough_value\">google Login</a>\n        </button>\n    </div>\n</html>"
+				},
+				{
+					"name": "facebook login view",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5500/login/facebook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5500",
+							"path": [
+								"login",
+								"facebook"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "638"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"27e-bEJJdCLEImMxw6eDPWELllp15TE\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Oct 2021 06:27:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html>\n    <head>\n        <title>facebook login</title>\n    </head>\n    <body></body>\n    <div style=\"text-align:center;\">\n        <h1>Welcome To facebook</h1>\n        <br>\n        <button style=\"background: #09094459;border: none;width: 10%;padding: 1%;border-radius: 4px;box-shadow: 0px 1px 3px 0px #00000099;color: black;\" onmouseover=\"this.style.box-shadow= 'none'\">\n            <a href=\"https://www.facebook.com/v4.0/dialog/oauth?auth_type=rerequest&amp;client_id=1050199145744697&amp;display=popup&amp;redirect_uri=http%3A%2F%2Flocalhost%3A5500%2Fapi%2Fauthenticate%2Ffacebook%2Fcallbackurl&amp;response_type=code&amp;scope=email%2Cuser_friends\">facebook Login</a>\n        </button>\n    </div>\n</html>"
+				}
+			]
+		},
+		{
+			"name": "fetching user details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ya29.a0ARrdaM-BJb2mjoZU5mn1luLc0eMLuLKGzgn_UGpTRkDty-LmjVH5urFNupAhW9qhXIdxOvDIldQ0oACVl-ziUS5m1nsvxr_AfTKoC88C3dvKG12yEkOnnY1yZcjubdQ3NKFoD9EodxezM9DRCUG-W0qORpzd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5500/api/google/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5500",
+					"path": [
+						"api",
+						"google",
+						"users"
+					]
+				},
+				"description": "fetches user details from obtained access token"
+			},
+			"response": [
+				{
+					"name": "fetching google user details",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0ARrdaM-BJb2mjoZU5mn1luLc0eMLuLKGzgn_UGpTRkDty-LmjVH5urFNupAhW9qhXIdxOvDIldQ0oACVl-ziUS5m1nsvxr_AfTKoC88C3dvKG12yEkOnnY1yZcjubdQ3NKFoD9EodxezM9DRCUG-W0qORpzd",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5500/api/google/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5500",
+							"path": [
+								"api",
+								"google",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "302"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"12e-dFNkWMdM/ov/VZbKI5te6hIi8Ac\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Oct 2021 06:25:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"ok\",\n    \"data\": {\n        \"id\": \"115844236467047521091\",\n        \"email\": \"samuraijack9005@gmail.com\",\n        \"verified_email\": true,\n        \"name\": \"aadesh raje\",\n        \"given_name\": \"aadesh\",\n        \"family_name\": \"raje\",\n        \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJxRhji3HIXlZyL8qe2aodnMd8X0WfT1ybNVgMWX=s96-c\",\n        \"locale\": \"en-GB\"\n    }\n}"
+				},
+				{
+					"name": "fetching facebook user details",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer EAAO7JosGiTkBANYsXZBnZANpCZCHAp6wIkaqzZAdjkZCvLIYRRH2eV3OVAvGPlVX2JVVCseGtbMZBltZAayZCLbTRY5RsFnDRf8ZCKAxZBU4ZCE4XzpaU3ZA3FcTnxNIgVpQ2YQQKdqKwD0MxoZAqQTNTADnT9zXyTziUQA2CaWSAYVN4hQ4izr1DEJf0FiZBl9hpdz7Ha3ZBpMCeaUL6O76aY2MIE91Gl2CTjosBnNL9EZA5rHm0gN7SZATjmWxaEHMJaDbKL87d6gOBVwrZCDQZDZD",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5500/api/facebook/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5500",
+							"path": [
+								"api",
+								"facebook",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "130"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"82-zH9xCqYrw4Pi/U5E3M/5e6XugMk\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Oct 2021 06:32:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"ok\",\n    \"data\": {\n        \"id\": \"2054995431318977\",\n        \"email\": \"pawar9005@gmail.com\",\n        \"first_name\": \"Vivek\",\n        \"last_name\": \"Pawar\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "fetch tokens",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"company\":\"google\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5500/api/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5500",
+					"path": [
+						"api",
+						"oauth",
+						"token"
+					]
+				},
+				"description": "fetch tokens present in mongo collection."
+			},
+			"response": [
+				{
+					"name": "google tokens",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company\":\"google\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5500/api/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5500",
+							"path": [
+								"api",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "616"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"268-EniZhcCbNO282+Jw9HgID+Ig2fI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Oct 2021 16:00:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"ok\",\n    \"data\": {\n        \"_id\": \"61613ed2049ccd6a9976518e\",\n        \"company\": \"google\",\n        \"Auth_Code\": \"4/0AX4XfWi0WwJCZbGDtVD8gt6g_bytbHzE0xQP1-BiRVpvwwYh6e8rCRDmKVR2jNNVcyk1zw\",\n        \"client_id\": \"609594948953-1drplrdr9b0tgkdsfot9c6hpn8u5mdae.apps.googleusercontent.com\",\n        \"client_secret\": \"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\",\n        \"modifiedBy\": \"admin\",\n        \"modifiedDateTime\": \"09-10-2021 21:29:04\",\n        \"submittedBy\": \"admin\",\n        \"submittedDateTime\": \"09-10-2021 21:29:04\",\n        \"token\": \"ya29.a0ARrdaM_YelWM4EoUXpWcTbkyPJ-wCqNXY4f6CPof-j-AT4k_jv3DciLWZqxQYoUEJuXk6RgzDJ2ewrd0FvZLcpU4cGfX8xFiEGkuuTlrVluOOZPHtt-uEV4X9MgIMcdh9xkPX7IS1zmpc_GuX8Dhpyzmt4zn\"\n    }\n}"
+				},
+				{
+					"name": "facebook tokens",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company\":\"facebook\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5500/api/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5500",
+							"path": [
+								"api",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1089"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"441-RvbMx5H18ALit8xryssWkUgFcxc\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Oct 2021 16:02:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"ok\",\n    \"data\": {\n        \"_id\": \"61613f00049ccd6a997651aa\",\n        \"company\": \"facebook\",\n        \"Auth_Code\": \"AQCcXYXJHHGPRZ2TJ6ARv5xcmgn0I5TezqEZaLPUSSlRUUlPRldrLD1LfZeYydnBCGxBwKNR4YLtJz2xzWf2_jJTi6Qj0gNC5LF9ZlMMyCJTY33j2YMbFRF80VZToA0IOp6oPfyi_DGHat6KIBlX_vH8__deMOek0uWlt8f3uKWvMuaYC-zE1zAmuuj9nxKuBe4Vb2yxI3G0qY5I5JIQc1yB_tfTSv2Jw5U4-BcFyB-wA2TX4QlTP5e_ylnSS_SVVleq69HYWSU9D5f589hjtgOAqTxMBmYYo3IV6YUrv7p6GaJsm9wOfm92HJLnQ42mXolE2kBcIAf5NTqNSb6cKXDC-IA1fZITsmI8nKeahwdy3WL2ulEpT6oeG7cIRkVxpXs-GRiu1mSTm6Wh679Mlq3AFcZ2GxOfDwZ6Og5v1uLxkg\",\n        \"client_id\": \"609594948953-1drplrdr9b0tgkdsfot9c6hpn8u5mdae.apps.googleusercontent.com\",\n        \"client_secret\": \"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\",\n        \"modifiedBy\": \"admin\",\n        \"modifiedDateTime\": \"09-10-2021 21:31:32\",\n        \"submittedBy\": \"admin\",\n        \"submittedDateTime\": \"09-10-2021 21:31:32\",\n        \"token\": \"EAAO7JosGiTkBAAvdbmSFg2aG0sfoGKkTXhR8WhyCW2zJ8ErhDJcSzJCUMWjHDizhO6D8noQfRSOpzuJKPctZChmtBf5fx0JRgg7RtCY9ZBQQ5nOZCVqdqTCUOnypC2z3Pkj6ckxftMtoqTwx6MxV4hhlGzfZAF359oWSiEzBKkeBW8mkHt01If5UWZBB58tviZBxkqXl9DbbdU0SiQyXsnnvB1joqZCyOChdIGF1v9AeSflxHw7m46aZCfZB5ZAQ42mWlycx14XazoMAZDZD\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
