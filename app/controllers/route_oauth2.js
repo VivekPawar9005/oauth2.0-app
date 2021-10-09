@@ -32,7 +32,7 @@ function getUsersData(req, res) {
         })
     } else {
         //redirects to support page for other platform oauth2 login
-        res.send('enable_login', { 'company': req.params.company })
+        res.render('enable_login', { 'company': req.params.company })
     }
 }
 

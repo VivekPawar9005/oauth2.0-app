@@ -45,7 +45,7 @@ Google.prototype.setTokens = function (data, callback) {
 Google.prototype.getUsersData = function (token, callback) {
     //fetch user details
     let self = this;
-    
+
     axios({
         url: 'https://www.googleapis.com/oauth2/v2/userinfo',
         method: 'get',
@@ -63,16 +63,21 @@ Google.prototype.getUsersData = function (token, callback) {
 Google.prototype.fetchTokens = function (data, callback) {
     //fetch tokens from mongo collection
     let self = this;
-    let collection = db.get().collection('tokens');
+    if (data.company == 'facebook' || data.company == 'google') {
+        let collection = db.get().collection('tokens');
 
-    collection.findOne({ 'company': data.company }, function (err, mongoResponse) {
-        if (err) {
-            callback(err);
-        } else {
-            self.customMessages.tokenFetchedSuccessfully.data = mongoResponse;
-            callback(null, self.customMessages.tokenFetchedSuccessfully);
-        }
-    });
+        collection.findOne({ 'company': data.company }, function (err, mongoResponse) {
+            if (err) {
+                callback(err);
+            } else {
+                self.customMessages.tokenFetchedSuccessfully.data = mongoResponse;
+                callback(null, self.customMessages.tokenFetchedSuccessfully);
+            }
+        });
+    }
+    else {
+        callback(self.customMessages.invalidPlatform);
+    }
 }
 
 module.exports = Google;
