@@ -1,0 +1,36 @@
+doctype html
+html
+   head
+      title  read me
+   body
+   div(style='font-family: monospace;')
+        h1(style='text-align:center; ') Read Me
+        p  This mini project is about implementation and understanding of Oauth2.0, using Facebook login and google login, So basically these login allows us to access their APIs. initially we'll be setting up the applications on respective platform such way that it intigrates with our node app.Like:
+            ul()
+                li filling domain details            
+                li setting up callbackurl 
+                li setting up scopes
+                li adding users
+
+        h3 How Does Oauth2.0 works ?
+        p for starter you need to fetch Authorization Code based on client id provided by platform, then you need to fetch access token by authenticating Authorization code and client secret, then your logged in as any normal user with access token to consume platform resources.
+        
+        h3 Steps to be followed.
+        ol
+            li In your browser Poll /login/:company endpoint and authenticate user. ie. company=google/facebook
+            li /api/oauth/token fetch the access token here.
+            li pass access token to platform end points. ie. /api/:company/users
+
+        h3(style='text-align:center;') App APIs
+        table(width='100%', cellspacing='0', cellpadding='2', border='1', bgcolor='#F2F2F2',style='text-align:center;')
+            thead
+                tr
+                th Method
+                th Path
+                th Middlewares
+            tbody
+            each item in endPoints
+                tr
+                    td #{item.methods.join('')}
+                    td #{item.path}
+                    td #{item.middlewares.join(',')}
