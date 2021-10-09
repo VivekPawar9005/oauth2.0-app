@@ -2,7 +2,7 @@ let axios = require('axios');
 let queryString = require('query-string');
 let async = require('async');
 let config = require('../configs/config');
-let db = require('../middlewares/mongo_pool');
+
 
 let customMessagesClass = require('../configs/custom_messages');
 
@@ -26,15 +26,8 @@ Google.prototype.setTokens = function (data, callback) {
         }
     }).then(tokenResp => {
         config.google.token = tokenResp.data;
-        let currentDateTime = config.customMethods.getCurrentDateAndTime();
-        let collection = db.get().collection('tokens');
-        collection.update({ 'company': 'google' }, { $set: { 'token': tokenResp.data.access_token, 'Auth_Code': data.code, 'client_id': config.google.clientId, 'client_secret': config.google.clientSecret, 'submittedDateTime': currentDateTime, 'modifiedDateTime': currentDateTime, 'submittedBy': 'admin', 'modifiedBy': 'admin' } }, { upsert: true }, function (err, mongoResponse) {
-            if (err) {
-                callback(self.customMessages.networkError);
-            } else {
-                callback(null, self.customMessages.authenticatedSuccessfully);
-            }
-        });
+
+        callback(null, self.customMessages.authenticatedSuccessfully);
 
     }).catch(err => {
         self.customMessages.invalidCredentials.message = JSON.stringify(err.response.data);
@@ -45,7 +38,7 @@ Google.prototype.setTokens = function (data, callback) {
 Google.prototype.getUsersData = function (token, callback) {
     //fetch user details
     let self = this;
-    
+
     axios({
         url: 'https://www.googleapis.com/oauth2/v2/userinfo',
         method: 'get',
@@ -61,18 +54,15 @@ Google.prototype.getUsersData = function (token, callback) {
 }
 
 Google.prototype.fetchTokens = function (data, callback) {
-    //fetch tokens from mongo collection
+    //fetch tokens from config
     let self = this;
-    let collection = db.get().collection('tokens');
 
-    collection.findOne({ 'company': data.company }, function (err, mongoResponse) {
-        if (err) {
-            callback(err);
-        } else {
-            self.customMessages.tokenFetchedSuccessfully.data = mongoResponse;
-            callback(null, self.customMessages.tokenFetchedSuccessfully);
-        }
-    });
+    if (data.company == 'facebook' || data.company == 'google') {
+        self.customMessages.tokenFetchedSuccessfully.data = config[data.company].token;
+        callback(null, self.customMessages.tokenFetchedSuccessfully);
+    } else {
+        callback(self.customMessages.invalidPlatform);
+    }
 }
 
 module.exports = Google;

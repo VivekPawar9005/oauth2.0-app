@@ -37,6 +37,11 @@ this.successfullResponse={
     status:'ok',
     data:[]
 } 
+this.invalidPlatform={
+    code:401,
+    status:'invalid-platform',
+    message:'invalid platform selected for accessing tokens'
+}
 }
 
 module.exports=CustomMessages;

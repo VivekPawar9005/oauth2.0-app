@@ -2,7 +2,7 @@ let axios = require('axios');
 let queryString = require('query-string');
 let async = require('async');
 let config = require('../configs/config');
-let db = require('../middlewares/mongo_pool');
+
 
 let customMessagesClass = require('../configs/custom_messages');
 function Facebook() {
@@ -13,7 +13,7 @@ Facebook.prototype.setTokens = function (data, callback) {
     //authenticating and fetching access token from retrived authentication code 
 
     let self = this;
-    
+
     axios({
         url: config.facebook.tokenApi,
         method: 'get',
@@ -25,15 +25,8 @@ Facebook.prototype.setTokens = function (data, callback) {
         }
     }).then(tokenResp => {
         config.facebook.token = tokenResp.data;
-        let currentDateTime = config.customMethods.getCurrentDateAndTime();
-        let collection = db.get().collection('tokens');
-        collection.update({ 'company': 'facebook' }, { $set: { 'token': tokenResp.data.access_token, 'Auth_Code': data.code, 'client_id': config.google.clientId, 'client_secret': config.google.clientSecret, 'submittedDateTime': currentDateTime, 'modifiedDateTime': currentDateTime, 'submittedBy': 'admin', 'modifiedBy': 'admin' } }, { upsert: true }, function (err, mongoResponse) {
-            if (err) {
-                callback(self.customMessages.networkError);
-            } else {
-                callback(null, self.customMessages.authenticatedSuccessfully);
-            }
-        });
+
+        callback(null, self.customMessages.authenticatedSuccessfully);
     }).catch(err => {
         self.customMessages.invalidCredentials.message = JSON.stringify(err.response.data);
         callback(self.customMessages.invalidCredentials);
